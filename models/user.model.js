@@ -37,7 +37,16 @@ const schema = new Schema(
     },
     {
         timestamps: true,
-        toJSON: {
+        
+        }
+    
+)
+ 
+const User = mongoose.model("User", schema);
+module.exports = User;
+
+
+/*toJSON: {
             transform: (doc, ret) => {
                 ret.id =ret._id;
                 delete  ret._id;
@@ -45,7 +54,4 @@ const schema = new Schema(
                 delete ret.password;
                 return ret;
 
-            }
-        }
-    }
-)
+            }*/
