@@ -1,10 +1,21 @@
 const mongoose = require("mongoose");
-const Movie = require ("../models/movie.model");
+const Movie = require("../models/movie.model");
 
 
 
-module.exports.create = (req, res, next) => {
-    
+module.exports.detail = (req, res, next) => {
+    const movieId = req.params.id
+    console.log(movieId)
+    Movie.findById(movieId)
+        .then((movie) => {
+            if (movie) {
+                res.json(movie)
+            } else {
+                res.status((404).json({message : "Movie not found"}))
+            }
+        })
+        .catch((error) => next(error))
+
 }
 
 module.exports.list = (req, res, next) => {
