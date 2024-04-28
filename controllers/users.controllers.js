@@ -16,3 +16,11 @@ module.exports.create = (req, res, next) => {
             }
         })
 }
+
+
+
+
+module.exports.profile = (req, res) => {
+    console.log(req.user)
+    res.json(req.user);
+  };

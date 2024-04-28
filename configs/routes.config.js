@@ -9,6 +9,7 @@ router.get("/detail/:id", movie.detail);
 
 //*****************user******** */
 router.post("/user", user.create);
+router.get("/profile", user.profile);
 
 
 
