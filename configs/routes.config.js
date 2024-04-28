@@ -1,9 +1,20 @@
 const express = require ("express");
 const router = express.Router();
-const movies = require("../controllers/movies.controller")
+const movie = require("../controllers/movies.controller")
+const user = require("../controllers/users.controllers");
+
+/***************movies********* */
+router.get("/movies", movie.list);
+router.get("/detail/:id", movie.detail);
+
+//*****************user******** */
+router.post("/user", user.create);
 
 
-router.get("/movies", movies.list);
-router.get("/detail/:id", movies.detail);
+
+
+
+
+
 
 module.exports = router;
