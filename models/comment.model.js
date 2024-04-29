@@ -1,5 +1,5 @@
 const mongoose = require ("mongoose");
-const { schema } = require("./movie.model");
+
 const Schema = mongoose.Schema;
 
 const schema = new Schema(
@@ -7,6 +7,12 @@ const schema = new Schema(
         text: {
             type: String,
             required : "Text is required"
+        },
+        rating: {
+            type: Number,
+            min:0,
+            max:5,
+            required: "Rating is required"
         },
         movie: {
             type:Schema.Types.ObjectId,
