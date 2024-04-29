@@ -16,6 +16,8 @@ router.post("/login", user.login)
 
 /*********************comments***** */
 router.post("/movie/:id/comments",comments.create)
+router.patch("/movie/:id/comments", comments.update)
+router.delete("/movie/:id/comments", comments.delete)
 
 
 

@@ -42,7 +42,26 @@ const MovieSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-});
+},
+    {
+        timestamps: true,
+        toJSON: {
+            virtuals: true,
+            transform: (doc, ret) => {
+                ret.id = ret._id;
+                delete ret._id;
+                delete ret.__v;
+                return ret;
+            },
+        },
+    }
+);
+MovieSchema.virtual("comments", {
+    ref: "Comment",
+    localField: "_id",
+    foreignField: "movie",
+    justOne: false,
+})
 
 // Create the Movie model from the schema
 const Movie = mongoose.model('Movie', MovieSchema);

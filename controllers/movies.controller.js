@@ -5,8 +5,8 @@ const Movie = require("../models/movie.model");
 
 module.exports.detail = (req, res, next) => {
     const movieId = req.params.id
-    console.log(movieId)
     Movie.findById(movieId)
+        .populate("comments")
         .then((movie) => {
             if (movie) {
                 res.json(movie)
