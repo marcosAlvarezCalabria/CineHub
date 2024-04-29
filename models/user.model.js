@@ -38,6 +38,15 @@ const schema = new Schema(
     },
     {
         timestamps: true,
+    toJSON: {
+      transform: (doc, ret) => {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+        delete ret.password;
+        return ret;
+      },
+    },
         
         }
     
@@ -58,17 +67,13 @@ schema.pre("save", function(next) {
 
     }
 });
+
+schema.method("checkPassword", function (password) {
+    console.log(`comparing ${password} ${this.password}`)
+    return bcrypt.compare(password, this.password);
+  });
  
 const User = mongoose.model("User", schema);
 module.exports = User;
 
 
-/*toJSON: {
-            transform: (doc, ret) => {
-                ret.id =ret._id;
-                delete  ret._id;
-                delete ret.__v;
-                delete ret.password;
-                return ret;
-
-            }*/
