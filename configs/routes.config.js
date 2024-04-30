@@ -7,12 +7,14 @@ const authMiddleware = require ("../middlewares/auth.middleware.js")
 
 /***************movies********* */
 router.get("/movies", authMiddleware.checkAuth, movie.list);
-router.get("/detail/:id", movie.detail);
+router.get("/movies/:id", movie.detail);
 
 //*****************user******** */
 router.post("/user", user.create);
-router.get("/profile", user.profile);
+router.get("/profile",authMiddleware.checkAuth, user.profile);
 router.post("/login", user.login)
+router.patch("/user" ,authMiddleware.checkAuth, user.update)//update
+router.delete("/user",authMiddleware.checkAuth, user.delete)
 
 /*********************comments***** */
 router.post("/movie/:id/comments",comments.create)

@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
+const genreJson = require("../data/genres.json")
+
+
+const genres = Object.values(genreJson);
 
 const schema = new Schema(
     {
@@ -14,7 +18,7 @@ const schema = new Schema(
         },
         password: {
             type: String,
-            require: "Password is required"
+            required: "Password is required"
         },
         username: {
             type: String,
@@ -24,7 +28,12 @@ const schema = new Schema(
             type: Date,
             required: true,
         },
-        location : {
+        genre: {
+            type: String,
+            enum: genres,
+            required: true
+        },
+        location: {
             type: {
                 type: String,
                 enum: ["Point"],
@@ -38,21 +47,17 @@ const schema = new Schema(
     },
     {
         timestamps: true,
-    toJSON: {
-      transform: (doc, ret) => {
-        ret.id = ret._id;
-        delete ret._id;
-        delete ret.__v;
-        delete ret.password;
-        return ret;
-      },
-    },
-        
-        }
-    
-)
-
-
+        toJSON: {
+            transform: (doc, ret) => {
+                ret.id = ret._id;
+                delete ret._id;
+                delete ret.__v;
+                delete ret.password;
+                return ret;
+            },
+        },
+    }
+);
 
 schema.pre("save", function(next) {
     if(this.isModified("password")){
@@ -64,15 +69,14 @@ schema.pre("save", function(next) {
             .catch(next)
     } else {
         next()
-
     }
 });
 
 schema.method("checkPassword", function (password) {
     console.log(`comparing ${password} ${this.password}`)
     return bcrypt.compare(password, this.password);
-  });
- 
+});
+
 const User = mongoose.model("User", schema);
 module.exports = User;
 
