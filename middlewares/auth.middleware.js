@@ -22,7 +22,7 @@ module.exports.checkAuth = (req, res, next) => {
                     req.user = user
                     next()
                 } else {
-                    res.status(401).json({ message: "Unauthorized" })
+                    res.status(401).json({ message: "Unnnnnauthorized" })
                 }
 
             })
