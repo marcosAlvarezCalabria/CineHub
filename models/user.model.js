@@ -14,16 +14,16 @@ const schema = new Schema(
         },
         email: {
             type: String,
-            required: "Email is required"
-        },
+            required: [true, "Email is required"],
+            unique: true,
+            trim: true,
+            lowercase: true,
+          },
         password: {
             type: String,
-            required: "Password is required"
-        },
-        username: {
-            type: String,
-            required: "Username is required"
-        },
+            required: [true, "Password is required"],
+            minLength: [6, "password needs at least 6 characters"],
+          },
         birthDate: {
             type: Date,
             required: true,

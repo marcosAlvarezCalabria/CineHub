@@ -3,7 +3,7 @@ const User = require("../models/user.model")
 
 module.exports.checkAuth = (req, res, next) => {
     // extract jwt from Authorization header
-    const [ schema, token ] = req.headers?.authorization.split(" ");
+    const [ schema, token ] = req.headers?.authorization?.split(" ");
     switch (schema.toUpperCase()){
         case "BEARER":
             //verify signature and decoded jwt  (jwt,verify)
