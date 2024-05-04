@@ -13,7 +13,7 @@ router.get("/movies/:id", movie.detail);
 router.post("/user", user.create);
 router.get("/profile",authMiddleware.checkAuth, user.profile);
 router.post("/login", user.login)
-router.patch("/user" ,authMiddleware.checkAuth, user.update)//update
+router.patch("/profile" ,authMiddleware.checkAuth, user.update)//update
 router.delete("/user",authMiddleware.checkAuth, user.delete)
 
 /*********************comments***** */

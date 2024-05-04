@@ -62,7 +62,7 @@ module.exports.profile = (req, res, next) => {
 };
 
 module.exports.update = (req, res, next) => {
-    User.findByIdAndUpdate(req.user.id, { body: req.body })
+    User.findByIdAndUpdate(req.user.id, {body:req.user.body},{ runValidators: true })
         .then((user) => {
             if (user) {
                 res.json(user)
