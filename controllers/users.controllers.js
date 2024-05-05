@@ -49,7 +49,7 @@ module.exports.login = (req, res, next) => {
 
             }
         })
-        .catch()
+        .catch(next)
 
 }
 
