@@ -28,12 +28,14 @@ module.exports.create = (req, res, next) => {
 
 
 module.exports.login = (req, res, next) => {
-
+    console.info(req.body)
     User.findOne({ email: req.body.email })
         .then((user) => {
+            console.info({user})
             if (user) {
                 user.checkPassword(req.body.password)
                     .then((match) => {
+                        console.info({match})
                         if (match) {
                             const accessToken = jwt.sign({ sub: user.id, exp: Date.now() / 1000 + 3600 }, process.env.JWT_SECRET);
                             res.json({ accessToken })
@@ -62,7 +64,10 @@ module.exports.profile = (req, res, next) => {
 };
 
 module.exports.update = (req, res, next) => {
-    User.findByIdAndUpdate(req.user.id, req.body,{ runValidators: true, new: true })
+    const { name, email, birthDate, genre, location } = req.body;
+    const body = { name, email, birthDate, genre, location};
+    
+    User.findByIdAndUpdate(req.user.id, body,{ runValidators: true, new: true })
         .then((user) => {
             if (user) {
                 res.json(user)
