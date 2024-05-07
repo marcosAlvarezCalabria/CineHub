@@ -30,10 +30,7 @@ const MovieSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    genreIds: [{
-        type: Number,
-        required: true
-    }],
+    genres: [{ type:String, required:true}],
     posterURL: {
         type: String,
         required: true

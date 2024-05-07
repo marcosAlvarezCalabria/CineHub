@@ -19,7 +19,14 @@ module.exports.detail = (req, res, next) => {
 }
 
 module.exports.list = (req, res, next) => {
-    Movie.find()
+    const { genres } = req.query;
+    const criterial = {}
+    if (genres) criterial.genres = genres
+
+
+
+  
+    Movie.find(criterial)
         .then((movies) => res.json(movies))
         .catch(next)
 }

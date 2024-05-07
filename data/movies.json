@@ -23,6 +23,67 @@
       "genreIds": [28, 27, 53],
       "posterURL": "/9YTdswepVeqnZYo2Mkdn3mKNraF.jpg",
       "backdropURL": "/4woSOUD0equAYzvwhWBHIJDCM88.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Eclipse",
+      "overview": "In a world where the sun never rises, a young girl embarks on a perilous journey to restore light to her homeland, battling dark forces along the way.",
+      "releaseDate": "2023-09-08",
+      "popularity": 1789.32,
+      "voteAverage": 7.2,
+      "voteCount": 601,
+      "genreIds": [12, 14, 16],
+      "posterURL": "/1P3ZyEq02wcTqtm0jVgqunIMdy.jpg",
+      "backdropURL": "/lPIMZQAnkR71qHtYv5od3GraXTu.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Ghost Protocol",
+      "overview": "After being framed for a terrorist bombing, an elite team must go rogue to clear their names and prevent a global catastrophe.",
+      "releaseDate": "2023-05-14",
+      "popularity": 2156.89,
+      "voteAverage": 7.8,
+      "voteCount": 832,
+      "genreIds": [28, 53],
+      "posterURL": "/ghS1PtqL6k08VqxVDQSQbTf4u09.jpg",
+      "backdropURL": "/fKjkz5YCW5EED9PPElwmaU5qubq.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Crimson Horizon",
+      "overview": "In a world ravaged by climate change, a lone captain navigates the treacherous waters of the post-apocalyptic ocean in search of hope.",
+      "releaseDate": "2023-11-30",
+      "popularity": 1973.45,
+      "voteAverage": 6.9,
+      "voteCount": 537,
+      "genreIds": [12, 18, 10752],
+      "posterURL": "/dH4XtWph9k2Blj6vQ1Wi7Y1VXzG.jpg",
+      "backdropURL": "/8cYWl5sgKgC51clmbFSOWd6O5YO.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Inferno",
+      "overview": "When a volcanic eruption triggers a series of catastrophic events, a group of strangers must navigate through the chaos to reach safety.",
+      "releaseDate": "2024-03-22",
+      "popularity": 1840.75,
+      "voteAverage": 6.6,
+      "voteCount": 498,
+      "genreIds": [28, 18, 53],
+      "posterURL": "/ePZ0ezMgjU19AbxBV93e9SoYocG.jpg",
+      "backdropURL": "/kInnDlwpWTMMXI0P19GIV5PFK48.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Midnight Run",
+      "overview": "In a city gripped by crime, a retired detective is lured back into action to track down a notorious serial killer before they strike again.",
+      "releaseDate": "2023-07-11",
+      "popularity": 2023.18,
+      "voteAverage": 7.1,
+      "voteCount": 574,
+      "genreIds": [80, 53],
+      "posterURL": "/cj9KAXA5MKFvT1G6V8MhxUCIWM.jpg",
+      "backdropURL": "/o3YzVvX1vsgOu7yU1pL10p7IFyv.jpg"
     }
+
    
   ]

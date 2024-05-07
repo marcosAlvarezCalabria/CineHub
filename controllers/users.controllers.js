@@ -57,7 +57,7 @@ module.exports.login = (req, res, next) => {
 
 
 module.exports.profile = (req, res, next) => {
-    console.log(req.user)
+
     res.json(req.user);
 };
 
@@ -66,8 +66,6 @@ module.exports.update = (req, res, next) => {
         .then((user) => {
             if (user) {
                 res.json(user)
-                console.log(user)
-
             } else {
                 res.status(401).json({ message: "User not found" })
             }

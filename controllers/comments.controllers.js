@@ -35,7 +35,6 @@ module.exports.update = (req, res, next) => {
 
     })
         .then((comment) => {
-            console.log(`estoes comment`,req.body)
             res.json(comment);
         })
         .catch((err) => {
