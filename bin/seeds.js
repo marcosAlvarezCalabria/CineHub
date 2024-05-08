@@ -22,6 +22,6 @@ mongoose.connection.once("open", () => {
         })
         .then((restaurants) => console.info(`${movies.length} movies created`))
         .catch((error) => error(error))
-        .finally(() => process.exit(0))//*3
+        .finally(() => process.exit(0))
 
 })
