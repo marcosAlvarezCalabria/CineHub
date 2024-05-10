@@ -2,29 +2,32 @@ const Comment = require("../models/comment.model");
 const mongoose = require("mongoose");
 const Movie = require("../models/movie.model");
 
+
+
 module.exports.create = (req, res, next) => {
 
     Movie.findById(req.params.id)
         .then((movie) => {
             if (movie) {
-                Comment.create({ ...req.body, movie: req.params.id })
+                Comment.create({ ...req.body, movie: req.params.id ,author: req.user.id })
                     .then((comment) => {
                         res.json(comment)
                     })
-                    .catch((err) => {
-                        if (err instanceof mongoose.ValidationError) {
-                            res.status(400).json(err.errors)
+                    .catch((error) => {
+                        if (error instanceof mongoose.Error.ValidationError) {
+                            res.status(400).json(error.errors)
                         } else {
-                            next(err)
+                            next(error)
                         }
                     });
             } else {
                 res.status(404).json({ message: "Movie not found" });
             }
         })
-        .catch(next);
+        .catch((error) => next(error));
 
 }
+
 
 module.exports.update = (req, res, next) => {
 

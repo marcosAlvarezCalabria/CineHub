@@ -33,6 +33,9 @@ const schema = new Schema(
             enum: genres,
             required: true
         },
+        favorites: [{ 
+            type: Schema.Types.ObjectId,
+             ref: 'Movie' }] ,
         location: {
             type: {
                 type: String,

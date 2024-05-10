@@ -17,12 +17,13 @@ router.patch("/profile" ,authMiddleware.checkAuth, user.update)//update
 router.delete("/user",authMiddleware.checkAuth, user.delete)
 
 /*********************comments***** */
-router.post("/movie/:id/comments",comments.create)
+router.post("/movie/:id/comments",authMiddleware.checkAuth,comments.create)
 router.patch("/movie/:id/comments", comments.update)
 router.delete("/movie/:id/comments", comments.delete)
 
+/*****************favorites***************** */
 
-
+router.patch("/user/favorites/:id/remove",authMiddleware.checkAuth, user.removeFavorites)
 
 
 

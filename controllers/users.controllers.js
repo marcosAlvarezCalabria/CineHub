@@ -9,7 +9,7 @@ module.exports.create = (req, res, next) => {
     User.findOne({ email: userData.email })
         .then((userFound) => {
             if (userFound) {
-                res.status(409).json({ message: "User validation failed", errors : { email : { message: `Email already exist` } } })
+                res.status(409).json({ message: "User validation failed", errors: { email: { message: `Email already exist` } } })
             } else {
                 User.create(userData)
                     .then((user) => {
@@ -17,7 +17,7 @@ module.exports.create = (req, res, next) => {
                     })
                     .catch((error) => {
                         if (error instanceof mongoose.Error.ValidationError) {
-                            res.status(400).json({ errors: error.errors})
+                            res.status(400).json({ errors: error.errors })
                         } else {
                             next(error)
                         }
@@ -31,11 +31,11 @@ module.exports.login = (req, res, next) => {
     console.info(req.body)
     User.findOne({ email: req.body.email })
         .then((user) => {
-            console.info({user})
+            console.info({ user })
             if (user) {
                 user.checkPassword(req.body.password)
                     .then((match) => {
-                        console.info({match})
+                        console.info({ match })
                         if (match) {
                             const accessToken = jwt.sign({ sub: user.id, exp: Date.now() / 1000 + 3600 }, process.env.JWT_SECRET);
                             res.json({ accessToken })
@@ -64,10 +64,10 @@ module.exports.profile = (req, res, next) => {
 };
 
 module.exports.update = (req, res, next) => {
-    const { name, email, birthDate, genre, location } = req.body;
-    const body = { name, email, birthDate, genre, location};
-    
-    User.findByIdAndUpdate(req.user.id, body,{ runValidators: true, new: true })
+    const { name, email, birthDate, genre, location, favorites } = req.body;
+    const body = { name, email, birthDate, genre, location, favorites };
+
+    User.findByIdAndUpdate(req.user.id, body, { runValidators: true, new: true })
         .then((user) => {
             if (user) {
                 res.json(user)
@@ -86,3 +86,24 @@ module.exports.delete = (req, res, next) => {
         })
         .catch((error) => next(error))
 }
+
+module.exports.removeFavorites = (req, res, next) => {
+    const { movieId } = req.body;
+    const { id } = req.params;
+
+    console.log("movieId", movieId);
+    User.findByIdAndUpdate(
+        id,
+        { $pull: { favorites: movieId } }, // Utiliza $pull para eliminar un elemento de un array
+        { new: true } // Para que devuelva el documento actualizado
+    )
+    .then((updatedUser) => {
+        if (updatedUser) {
+            res.status(200).json(updatedUser);
+        } else {
+            console.log("User not found");
+            throw new Error("User not found");
+        }
+    })
+    .catch((error) => next(error));
+};
