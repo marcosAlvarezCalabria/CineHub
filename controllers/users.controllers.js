@@ -64,8 +64,8 @@ module.exports.profile = (req, res, next) => {
 };
 
 module.exports.update = (req, res, next) => {
-    const { name, email, birthDate, genre, location, favorites } = req.body;
-    const body = { name, email, birthDate, genre, location, favorites };
+    const { name, email, birthDate, genre, location, favorites,id } = req.body;
+    const body = { name, email, birthDate, genre, location, favorites,id };
 
     User.findByIdAndUpdate(req.user.id, body, { runValidators: true, new: true })
         .then((user) => {
